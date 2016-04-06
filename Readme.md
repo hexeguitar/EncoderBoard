@@ -12,7 +12,7 @@ Up to 8 modules can be used on the same I2C bus. Compatible with 5V and 3.3V sup
 The values shown on the schematis are 8 bit wide and intended to use when you write your own I2C subroutines, like:
 
 ```...
-`I2C_Write(DEVICE_ID | WRITE_BIT);
+I2C_Write(DEVICE_ID | WRITE_BIT);
 ...```
 
 To use them within popular I2C libraries, like the Arduino/Wire **divide the address by two**/right shift it 1 bit. 
