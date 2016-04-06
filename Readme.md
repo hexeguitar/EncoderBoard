@@ -24,10 +24,15 @@ First we need to set the both ports A and B to outputs, as the default setting i
 The procedure is very simple:
 
 `I2C_Start();					//generate start condition`
+
 `I2C_Write(MCP23017_SLAVE_ADDR | WRITE_BIT);	//send slave address and set the write bit(0)`
+
 `I2C_Write(0x00);				//write to address 0x00=IODIRA`
+
 `I2C_Write(0x00);				//set all A pins to output, write is sequential, address pointer ++ = IODIRB`
+
 `I2C_Write(0x00);				//set all B pins to output`
+
 `I2C_Stop();					//generate stop condition`
 
 Updating the LEDs, thanks to the sequential write is also trivial:
