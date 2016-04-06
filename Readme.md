@@ -1,6 +1,6 @@
 ## Rotary encoder board / I2C driven LED ring  ##
 
-
+![EncoderBoard](https://github.com/hexeguitar/EncoderBoard/blob/master/pics/EncLED.gif)
 
 Mounting board for the Panasonic EVEP series rotary encoders equipped with I2C driven 16 LED ring.
 
@@ -17,7 +17,7 @@ I2C_Write(DEVICE_ID | WRITE_BIT);
 ...
 ```
 
-To use them within popular I2C libraries, like the Arduino/Wire **divide the address by two**/right shift it 1 bit. 
+To use them within popular I2C libraries, like the Arduino/Wire **divide the address by two**/right shift it 1 bit.
 For A0,A1,A2=0 it will be 0x20 instead of 0x40.
 
 #### LED ring control ####
@@ -26,12 +26,12 @@ First we need to set the both ports A and B to outputs, as the default setting i
 The procedure is very simple:
 
 ```
-I2C_Start();					//generate start condition
+I2C_Start();					                      //generate start condition
 I2C_Write(MCP23017_SLAVE_ADDR | WRITE_BIT);	//send slave address and set the write bit(0)
-I2C_Write(0x00);				//write to address 0x00=IODIRA
-I2C_Write(0x00);				//set all A pins to output, write is sequential, address pointer ++ = IODIRB
-I2C_Write(0x00);				//set all B pins to output
-I2C_Stop();					//generate stop condition
+I2C_Write(0x00);				                    //write to address 0x00=IODIRA
+I2C_Write(0x00);				                    //set all A pins to output, write is sequential, address pointer ++ = IODIRB
+I2C_Write(0x00);				                    //set all B pins to output
+I2C_Stop();					                        //generate stop condition
 ```
 
 Updating the LEDs, thanks to the sequential write is also trivial:
@@ -39,17 +39,24 @@ Updating the LEDs, thanks to the sequential write is also trivial:
 ```
 void UpdateLeds(uint16_t value)
 {
-I2C_Start();					//generate start condition
-I2C_Write(MCP23017_SLAVE_ADDR | WRITE_BIT);	//send slave address and set the write bit(0)
-I2C_Write(0x12);				//write to address 0x12=GPIOAA
-I2C_Write(value&0xFF);				//write lower 8 bits to PORTA
-I2C_Write(value>>8);				//write higher 8 bits to PORTB
-I2C_Stop();					//generate stop condition
+  I2C_Start();					                      //generate start condition
+  I2C_Write(MCP23017_SLAVE_ADDR | WRITE_BIT);	//send slave address and set the write bit(0)
+  I2C_Write(0x12);				                    //write to address 0x12=GPIOAA
+  I2C_Write(value&0xFF);				              //write lower 8 bits to PORTA
+  I2C_Write(value>>8);				                //write higher 8 bits to PORTB
+  I2C_Stop();					                        //generate stop condition
 }
 ```
 
 On platforms as Arduino you can use the [Adafruit MCP23017 Library](https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library "Adafruit MCP23017 library")
 
+![EncoderBoard](https://github.com/hexeguitar/EncoderBoard/blob/master/pics/EncLED3.jpg)
+
+You can order the PCBs directly at OSH Park, here is the link to the shared project:
+
+https://www.oshpark.com/shared_projects/Tbhe3eJt
+
+------
 (c) 04.2016 by Piotr Zapart 
 www.hexeguitar.com
 
