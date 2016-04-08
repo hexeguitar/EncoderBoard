@@ -1,8 +1,7 @@
 ## Rotary encoder board / I2C driven LED ring  ##
 #### Example project for Cypress PSoc4 Pioneer Kit ####
 
-![EncoderBoard](https://github.com/hexeguitar/EncoderBoard/blob/master/pics/EncLED.gif)
-![EncoderBoard](https://github.com/hexeguitar/EncoderBoard/blob/master/PSoC4_ExampleProject/PSoCprj.png)
+![EncoderBoard](https://github.com/hexeguitar/EncoderBoard/blob/master/PSoc4_ExampleProject/PSoCprj.png)
 
 ------
 (c) 04.2016 by Piotr Zapart 
